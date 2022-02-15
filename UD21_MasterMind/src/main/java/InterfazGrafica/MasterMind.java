@@ -1,15 +1,20 @@
 package InterfazGrafica;
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout.*;
 import javax.swing.LayoutStyle.*;
 
 public class MasterMind extends JFrame {
-	/**
-	 * @wbp.nonvisual location=68,139
-	 */
-	private final Choice choice = new Choice();
 
+	JButton rojo = new JButton("");
+	JButton naranja = new JButton("");
+	JButton verde = new JButton("");
+	JButton azul = new JButton("");
+	JButton rosa = new JButton("");
+	
+	JButton[] secreto = new JButton[5];
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -27,36 +32,31 @@ public class MasterMind extends JFrame {
 		
 		setTitle("Master Mind");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(30, 30, 475, 471);
+		setBounds(30, 30, 538, 170);
 		
-		JPanel panel2 = new JPanel();
+		JLabel lblNewLabel = new JLabel("Estos son los colores disponibles: ");
 		
-		JLabel lblNewLabel = new JLabel("Estos son los colores disponibles:  ");
-		
-		JButton rojo = new JButton("");
-		rojo.setIcon(null);
-		rojo.setEnabled(false);
+		rojo.setForeground(Color.RED);
 		rojo.setBackground(Color.RED);
+		rojo.addMouseListener(new Resultado());
 		
-		JButton naranja = new JButton("");
 		naranja.setForeground(Color.ORANGE);
-		naranja.setEnabled(false);
 		naranja.setBackground(Color.ORANGE);
+		naranja.addMouseListener(new Resultado());
 		
-		JButton verde = new JButton("");
 		verde.setForeground(new Color(0, 128, 0));
-		verde.setEnabled(false);
 		verde.setBackground(new Color(0, 128, 0));
+		verde.addMouseListener(new Resultado());
 		
-		JButton naranja_1 = new JButton("");
-		naranja_1.setForeground(Color.BLUE);
-		naranja_1.setEnabled(false);
-		naranja_1.setBackground(Color.BLUE);
+		azul.setForeground(Color.BLUE);
+		azul.setBackground(Color.BLUE);
+		azul.addMouseListener(new Resultado());
 		
-		JButton naranja_2 = new JButton("");
-		naranja_2.setForeground(Color.PINK);
-		naranja_2.setEnabled(false);
-		naranja_2.setBackground(Color.PINK);
+		rosa.setForeground(Color.PINK);
+		rosa.setBackground(Color.PINK);
+		rosa.addMouseListener(new Resultado());
+		
+		JLabel lblCombinacionSecreta = new JLabel("Combinacion secreta:");
 		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -64,42 +64,81 @@ public class MasterMind extends JFrame {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(rojo, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(naranja, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(verde, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(naranja_1, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(naranja_2, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(334)
-							.addComponent(panel2, GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)))
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
+						.addComponent(lblNewLabel)
+						.addComponent(lblCombinacionSecreta))
+					.addGap(4)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(rojo, GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(naranja, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(verde, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(azul, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(rosa, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addContainerGap(106, Short.MAX_VALUE))))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE))
+							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblCombinacionSecreta, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(28)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(naranja, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(rojo, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
-								.addComponent(verde, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(naranja_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(naranja_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel2, GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-					.addContainerGap())
+								.addComponent(naranja, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(verde, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(azul, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(rosa, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING))))
+					.addContainerGap(211, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
 	}
+	
+	public class Resultado implements MouseListener {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            
+        	if(e.getSource()==rojo) {
+        		
+        	}
+        	
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            
+        }
+        
+    }
+	
 }
