@@ -1,13 +1,13 @@
 package UD21_MasterMind.UD21_MasterMind;
 
-/**
- * Hello world!
- *
- */
+import InterfazGrafica.InterfazDificultad;
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+
+    	InterfazDificultad iD = new InterfazDificultad();
+    	
     }
 }
