@@ -1,31 +1,15 @@
 package InterfazGrafica;
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JSplitPane;
-import javax.swing.BoxLayout;
-import javax.swing.JTable;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.CardLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.Color;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.GroupLayout.*;
+import javax.swing.LayoutStyle.*;
 
 public class MasterMind extends JFrame {
-
 	/**
-	 * Launch the application.
+	 * @wbp.nonvisual location=68,139
 	 */
+	private final Choice choice = new Choice();
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -39,16 +23,11 @@ public class MasterMind extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public MasterMind() {
 		
 		setTitle("Master Mind");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(30, 30, 475, 471);
-		
-		JPanel panel1 = new JPanel();
 		
 		JPanel panel2 = new JPanel();
 		
@@ -98,8 +77,7 @@ public class MasterMind extends JFrame {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(naranja_2, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panel1, GroupLayout.PREFERRED_SIZE, 316, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
+							.addGap(334)
 							.addComponent(panel2, GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
@@ -119,9 +97,7 @@ public class MasterMind extends JFrame {
 								.addComponent(naranja_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(naranja_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel1, GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
-						.addComponent(panel2, GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE))
+					.addComponent(panel2, GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		getContentPane().setLayout(groupLayout);
