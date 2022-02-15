@@ -24,10 +24,6 @@ public class InterfazDificultad extends JFrame {
 			
 			setContentPane(contentPane);
 			
-			
-			
-			
-			
 	}
 	
 }
