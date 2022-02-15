@@ -9,5 +9,9 @@ public class App
 
     	InterfazDificultad iD = new InterfazDificultad();
     	
+    	int dificultad = iD.getDificultad();
+    	
+    	
+    	
     }
 }
