@@ -16,10 +16,10 @@ public class Juego extends JFrame {
 	private int dificultad = 0;
 	private JButton[] secreto;
 	private JButton[] btnColoresDisp = new JButton[5];
-	private JButton[][] botonJuego = new JButton[5][5];
+	public JButton[][] botonJuego = new JButton[5][5];
 	private JButton[][] botonCompr = new JButton[5][5];
 	private ArrayList<Color> coloresDisp = new ArrayList<Color>();
-	private int conti = 0, contj = 0, icompr = 0;
+	public int conti = 0, contj = 0, icompr = 0;
 	
 	
 	public Juego(JButton[] secreto) {
@@ -62,10 +62,11 @@ public class Juego extends JFrame {
 			 boton.addActionListener(new ActionListener(){			
 				public void actionPerformed(ActionEvent e) {
 					
+					System.out.println("casilla"+botonJuego[0][0].getBackground().toString());
 					conti = 0;
 					contj++;
 					contieneColor();
-						
+					
 				}
 			});
 			
@@ -95,7 +96,7 @@ public class Juego extends JFrame {
 			for (int i = 0; i < 5;i++) {				
 				for (int j = 0; j < 5;j++) {		
 					botonJuego[i][j] = new JButton("");
-					contentPane.add(botonJuego[i][j]);					
+					contentPane.add(botonJuego[i][j]);
 				}				
 			}
 			
@@ -145,6 +146,7 @@ public class Juego extends JFrame {
 
 			
 				if (e.getSource().equals(btnColoresDisp[0])) {
+					System.out.println("posicion" + contj +" "+conti);
 					botonJuego[contj][conti].setBackground(Color.RED);
 
 				} else if (e.getSource().equals(btnColoresDisp[1])) {
@@ -160,6 +162,7 @@ public class Juego extends JFrame {
 					botonJuego[contj][conti].setBackground(Color.PINK);
 					
 				}
+				
 				
 				conti++;
 				
@@ -192,15 +195,17 @@ public class Juego extends JFrame {
 	public boolean contieneColor() {
 		
 		icompr = 0;
-	
+		
 		boolean res = false;
 				
+		System.out.println("casilla"+botonJuego[0][0].getBackground().toString());
+		
 		for(int i = 0; i<5; i++) {
 			for(int j = 0; j<5; j++) {
+				System.out.println(secreto[j].getBackground().toString() + "" +botonJuego[contj][i].getBackground().toString());
 				if(secreto[j].getBackground().equals(botonJuego[contj][i].getBackground())) {
 					
 					botonCompr[contj][icompr].setBackground(Color.WHITE);
-					
 					res = true;
 				}
 			}
