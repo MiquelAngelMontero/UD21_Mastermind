@@ -199,7 +199,7 @@ public class Juego extends JFrame {
 			for(int j = 0; j<5; j++) {
 				if(secreto[j].getBackground().equals(botonJuego[contj][i].getBackground())) {
 					
-					botonCompr[contj-1][icompr].setBackground(Color.WHITE);
+					botonCompr[contj][icompr].setBackground(Color.WHITE);
 					
 					res = true;
 				}
