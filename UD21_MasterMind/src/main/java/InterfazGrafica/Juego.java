@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -17,12 +18,19 @@ public class Juego extends JFrame {
 	private JButton[] btnColoresDisp = new JButton[5];
 	private JButton[][] botonJuego = new JButton[5][5];
 	private JButton[][] botonCompr = new JButton[5][5];
-	private Color[] coloresDisp = {Color.WHITE, Color.RED, Color.ORANGE, new Color(0, 128, 0), Color.BLUE, Color.PINK};
-	private int conti = 0, contj = 0;
+	private ArrayList<Color> coloresDisp = new ArrayList<Color>();
+	private int conti = 0, contj = 0, icompr = 0;
 	
 	
 	public Juego(JButton[] secreto) {
 			
+			coloresDisp.add(Color.WHITE);
+			coloresDisp.add(Color.RED);
+			coloresDisp.add(Color.ORANGE);
+			coloresDisp.add(new Color(0, 128, 0));
+			coloresDisp.add(Color.BLUE);
+			coloresDisp.add(Color.PINK);
+		
 			this.secreto = secreto;
 		
 			setTitle("Mastermind");
@@ -56,6 +64,7 @@ public class Juego extends JFrame {
 					
 					conti = 0;
 					contj++;
+					contieneColor();
 						
 				}
 			});
@@ -74,7 +83,7 @@ public class Juego extends JFrame {
 				btnColoresDisp[i] = new JButton("");
 				contentPane.add(btnColoresDisp[i]);		
 				btnColoresDisp[i].addMouseListener(new Resultado());
-				btnColoresDisp[i].setBackground(coloresDisp[i+1]);
+				btnColoresDisp[i].setBackground(coloresDisp.get(i+1));
 			}
 			
 			btnColoresDisp[0].setBounds(570, 180, 30, 30);
@@ -109,16 +118,17 @@ public class Juego extends JFrame {
 			for (int i = 0; i < 5;i++) {				
 				for (int j = 0; j < 5;j++) {		
 					botonCompr[i][j] = new JButton("");
-					contentPane.add(botonCompr[i][j]);					
+					contentPane.add(botonCompr[i][j]);	
+					botonCompr[i][j].setBackground(Color.black);
 				}				
 			}
 			
 			
-			int x2 = 100, y2 = 80;
+			int x2 = 320, y2 = 80;
 			
 			for (int i = 0; i < 5;i++) {				
 				for (int j = 0; j < 5;j++) {									
-					botonCompr[i][j].setBounds(x, y, 30, 30);	
+					botonCompr[i][j].setBounds(x2, y2, 30, 30);	
 					x2 = x2 + 40;
 				}
 				
@@ -177,6 +187,29 @@ public class Juego extends JFrame {
 		public void mouseExited(MouseEvent e) {
 
 		}		
+	}
+	
+	public boolean contieneColor() {
+		
+		icompr = 0;
+	
+		boolean res = false;
+				
+		for(int i = 0; i<5; i++) {
+			for(int j = 0; j<5; j++) {
+				if(secreto[j].getBackground().equals(botonJuego[contj][i].getBackground())) {
+					
+					botonCompr[contj-1][icompr].setBackground(Color.WHITE);
+					
+					res = true;
+				}
+			}
+		}
+		
+		System.out.println(res);
+		
+		return res;
+		
 	}
 	
 }
