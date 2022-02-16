@@ -13,7 +13,7 @@ public class InterfazDificultad extends JFrame {
 	
 	public InterfazDificultad() {
 			
-			setTitle("Calculadora cambio de monedas");
+			setTitle("Dificultad");
 			
 			setBounds(600, 300, 250, 300);
 			
@@ -77,6 +77,9 @@ public class InterfazDificultad extends JFrame {
 							
 					contentPane.setVisible (false);
 					dispose();
+					
+					MasterMind frame = new MasterMind();
+					frame.setVisible(true);
 					
 					
 				}

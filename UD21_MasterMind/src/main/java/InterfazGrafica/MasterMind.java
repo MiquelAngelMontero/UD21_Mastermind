@@ -16,18 +16,6 @@ public class MasterMind extends JFrame {
 
 	private JButton[] secreto = new JButton[5];
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MasterMind frame = new MasterMind();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	public MasterMind() {
 
@@ -59,7 +47,7 @@ public class MasterMind extends JFrame {
 		rosa.setBounds(610, 32, 100, 50);
 
 		JLabel ComSecTxt = new JLabel("Combinacion secreta:");
-		ComSecTxt.setBounds(10, 150, 400, 10);
+		ComSecTxt.setBounds(10, 175, 400, 10);
 		pantalla.add(ComSecTxt);
 
 		pantalla.add(rojo);
@@ -68,6 +56,21 @@ public class MasterMind extends JFrame {
 		pantalla.add(azul);
 		pantalla.add(rosa);
 
+		 JButton boton = new JButton("Confirmar");
+		 boton.setBounds(350, 275, 120, 40);
+		 boton.setMnemonic(KeyEvent.VK_ENTER);
+		 pantalla.add(boton);
+		 boton.addActionListener(new ActionListener(){			
+			public void actionPerformed(ActionEvent e) {
+							
+				pantalla.setVisible (false);
+				dispose();
+				
+				Juego Juego = new Juego(secreto);
+					
+			}
+		});
+		
 		for (int i = 0; i < 5; i++) {
 			secreto[i] = new JButton("");
 			pantalla.add(secreto[i]);
@@ -84,11 +87,11 @@ public class MasterMind extends JFrame {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 
-			secreto[0].setBounds(210, 300, 100, 10);
-			secreto[1].setBounds(310, 300, 100, 10);
-			secreto[2].setBounds(410, 300, 100, 10);
-			secreto[3].setBounds(510, 300, 100, 10);
-			secreto[4].setBounds(610, 300, 100, 10);
+			secreto[0].setBounds(210, 150, 100, 50);
+			secreto[1].setBounds(310, 150, 100, 50);
+			secreto[2].setBounds(410, 150, 100, 50);
+			secreto[3].setBounds(510, 150, 100, 50);
+			secreto[4].setBounds(610, 150, 100, 50);
 
 				if (e.getSource().equals(rojo)) {
 					secreto[i].setBackground(Color.RED);
@@ -131,8 +134,8 @@ public class MasterMind extends JFrame {
 		@Override
 		public void mouseExited(MouseEvent e) {
 
-		}
-
+		}		
 	}
 
+	
 }
