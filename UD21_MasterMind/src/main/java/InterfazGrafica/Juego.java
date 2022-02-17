@@ -1,6 +1,7 @@
 package InterfazGrafica;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -13,16 +14,17 @@ import javax.swing.*;
 public class Juego extends JFrame {
 
 	private JPanel contentPane;
-	private int dificultad = 0;
+	private int dificultad;
 	private JButton[] secreto;
 	private JButton[] btnColoresDisp = new JButton[5];
 	public JButton[][] botonJuego = new JButton[5][5];
 	private JButton[][] botonCompr = new JButton[5][5];
 	private ArrayList<Color> coloresDisp = new ArrayList<Color>();
+	private ArrayList<Point> botonesAdivinados = new ArrayList<Point>();
 	public int conti = 0, contj = 0, icompr = 0;
 	
 	
-	public Juego(JButton[] secreto) {
+	public Juego(JButton[] secreto, int dificultad) {
 			
 			coloresDisp.add(Color.WHITE);
 			coloresDisp.add(Color.RED);
@@ -32,6 +34,7 @@ public class Juego extends JFrame {
 			coloresDisp.add(Color.PINK);
 		
 			this.secreto = secreto;
+			this.dificultad = dificultad;
 		
 			setTitle("Mastermind");
 			
@@ -62,10 +65,11 @@ public class Juego extends JFrame {
 			 boton.addActionListener(new ActionListener(){			
 				public void actionPerformed(ActionEvent e) {
 					
-					System.out.println("casilla"+botonJuego[0][0].getBackground().toString());
+					botonesAdivinados.clear();
 					conti = 0;
-					contj++;
+					posicionCorrecta();
 					contieneColor();
+					contj++;
 					
 				}
 			});
@@ -146,7 +150,6 @@ public class Juego extends JFrame {
 
 			
 				if (e.getSource().equals(btnColoresDisp[0])) {
-					System.out.println("posicion" + contj +" "+conti);
 					botonJuego[contj][conti].setBackground(Color.RED);
 
 				} else if (e.getSource().equals(btnColoresDisp[1])) {
@@ -192,26 +195,43 @@ public class Juego extends JFrame {
 		}		
 	}
 	
-	public boolean contieneColor() {
+	public boolean posicionCorrecta() {
 		
 		icompr = 0;
 		
 		boolean res = false;
-				
-		System.out.println("casilla"+botonJuego[0][0].getBackground().toString());
+			
+			for(int i = 0; i<5; i++) {
+					if(secreto[i].getBackground().equals(botonJuego[contj][i].getBackground()) && (!botonesAdivinados.contains(secreto[i].getLocation()))  && (!botonesAdivinados.contains(botonJuego[contj][i].getLocation()))) {					
+						botonCompr[contj][icompr].setBackground(Color.YELLOW);
+						botonesAdivinados.add(secreto[i].getLocation());
+						botonesAdivinados.add(botonJuego[contj][i].getLocation());
+						icompr++;
+						res = true;
+					}
+			}
+			
+			System.out.println(res);
+			
+			return res;
+		
+	}
+	
+	public boolean contieneColor() {
+		
+		boolean res = false;
 		
 		for(int i = 0; i<5; i++) {
 			for(int j = 0; j<5; j++) {
-				System.out.println(secreto[j].getBackground().toString() + "" +botonJuego[contj][i].getBackground().toString());
-				if(secreto[j].getBackground().equals(botonJuego[contj][i].getBackground())) {
-					
+				if(secreto[j].getBackground().equals(botonJuego[contj][i].getBackground()) && (!botonesAdivinados.contains(secreto[j].getLocation()))  && (!botonesAdivinados.contains(botonJuego[contj][i].getLocation()))) {					
 					botonCompr[contj][icompr].setBackground(Color.WHITE);
+					botonesAdivinados.add(secreto[j].getLocation());
+					botonesAdivinados.add(botonJuego[contj][i].getLocation());
+					icompr++;
 					res = true;
 				}
 			}
 		}
-		
-		System.out.println(res);
 		
 		return res;
 		

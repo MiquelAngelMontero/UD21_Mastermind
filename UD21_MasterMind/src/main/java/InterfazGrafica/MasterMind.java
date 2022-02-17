@@ -13,12 +13,15 @@ public class MasterMind extends JFrame {
 	private JButton verde = new JButton("");
 	private JButton azul = new JButton("");
 	private JButton rosa = new JButton("");
+	private int dificultad;
 
 	private JButton[] secreto = new JButton[5];
 
 
-	public MasterMind() {
+	public MasterMind(int dificultad) {
 
+		this.dificultad=dificultad;
+		
 		pantalla = new JPanel();
 		pantalla.setLayout(null);
 		setContentPane(pantalla);
@@ -66,7 +69,7 @@ public class MasterMind extends JFrame {
 				pantalla.setVisible (false);
 				dispose();
 				
-				Juego Juego = new Juego(secreto);
+				Juego Juego = new Juego(secreto, dificultad);
 					
 			}
 		});
