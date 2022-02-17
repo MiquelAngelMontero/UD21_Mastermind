@@ -78,7 +78,7 @@ public class InterfazDificultad extends JFrame {
 					contentPane.setVisible (false);
 					dispose();
 					
-					MasterMind frame = new MasterMind();
+					MasterMind frame = new MasterMind(dificultad);
 					frame.setVisible(true);
 					
 					
