@@ -71,16 +71,19 @@ public class MasterMind extends JFrame {
 			for (int i = 0; i < 5; i++) {
 				secreto[i] = new JButton("");
 				pantalla.add(secreto[i]);
+				secreto[i].setEnabled(false);
 			}
 		}else if(dificultad==2) {
 			for (int i = 0; i < 6; i++) {
 				secreto2[i] = new JButton("");
 				pantalla.add(secreto2[i]);
+				secreto2[i].setEnabled(false);
 			}
 		}else if(dificultad==3) {
 			for (int i = 0; i < 7; i++) {
 				secreto3[i] = new JButton("");
 				pantalla.add(secreto3[i]);
+				secreto3[i].setEnabled(false);
 			}
 		}
 

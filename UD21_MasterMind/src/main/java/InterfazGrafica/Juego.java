@@ -26,6 +26,7 @@ public class Juego extends JFrame {
 	private ArrayList<Color> coloresDisp = new ArrayList<Color>();
 	private ArrayList<Point> botonesAdivinados = new ArrayList<Point>();
 	public int conti = 0, contj = 0, icompr = 0;
+	protected int ganada=0;
 	
 	
 	public Juego(JButton[] secreto, int dificultad) {
@@ -76,7 +77,11 @@ public class Juego extends JFrame {
 			 contentPane.add(boton);
 			 boton.addActionListener(new ActionListener(){			
 				public void actionPerformed(ActionEvent e) {
-					
+					if(contj>=5) {
+						JOptionPane.showMessageDialog(null, "HAS PERDIDO");
+						dispose();
+						contj=4;
+					}
 					botonesAdivinados.clear();
 					conti = 0;
 					posicionCorrecta();
@@ -112,6 +117,7 @@ public class Juego extends JFrame {
 			for (int i = 0; i < 5;i++) {				
 				for (int j = 0; j < 5;j++) {		
 					botonJuego[i][j] = new JButton("");
+					botonJuego[i][j].setEnabled(false);
 					contentPane.add(botonJuego[i][j]);
 				}				
 			}
@@ -125,7 +131,6 @@ public class Juego extends JFrame {
 					x = x + 40;
 				}
 				
-				System.out.println(x);
 				x = x - 200;
 				y = y + 100;
 			}
@@ -136,6 +141,7 @@ public class Juego extends JFrame {
 				for (int j = 0; j < 5;j++) {		
 					botonCompr[i][j] = new JButton("");
 					contentPane.add(botonCompr[i][j]);	
+					botonCompr[i][j].setEnabled(false);
 					botonCompr[i][j].setBackground(Color.black);
 				}				
 			}
@@ -149,7 +155,6 @@ public class Juego extends JFrame {
 					x2 = x2 + 40;
 				}
 				
-				System.out.println(x);
 				x2 = x2 - 200;
 				y2 = y2 + 100;
 			}
@@ -219,11 +224,18 @@ public class Juego extends JFrame {
 						botonesAdivinados.add(secreto[i].getLocation());
 						botonesAdivinados.add(botonJuego[contj][i].getLocation());
 						icompr++;
+						ganada++;
 						res = true;
 					}
 			}
 			
-			System.out.println(res);
+			if(ganada==5) {
+				JOptionPane.showMessageDialog(null, "HAS GANADO");
+				dispose();
+			}else {
+				ganada=0;
+			}
+			
 			
 			return res;
 		

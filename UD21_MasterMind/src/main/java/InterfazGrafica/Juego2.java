@@ -26,6 +26,7 @@ public class Juego2 extends JFrame {
 	private ArrayList<Color> coloresDisp = new ArrayList<Color>();
 	private ArrayList<Point> botonesAdivinados = new ArrayList<Point>();
 	public int conti = 0, contj = 0, icompr = 0;
+	protected int ganada=0;
 	
 	
 	public Juego2(JButton[] secreto2, int dificultad) {
@@ -76,7 +77,11 @@ public class Juego2 extends JFrame {
 			 contentPane.add(boton);
 			 boton.addActionListener(new ActionListener(){			
 				public void actionPerformed(ActionEvent e) {
-					
+					if(contj>=5) {
+						JOptionPane.showMessageDialog(null, "HAS PERDIDO");
+						dispose();
+						contj=4;
+					}
 					botonesAdivinados.clear();
 					conti = 0;
 					posicionCorrecta();
@@ -114,6 +119,7 @@ public class Juego2 extends JFrame {
 				for (int j = 0; j < 6;j++) {		
 					botonJuego[i][j] = new JButton("");
 					contentPane.add(botonJuego[i][j]);
+					botonJuego[i][j].setEnabled(false);
 				}				
 			}
 			
@@ -126,7 +132,6 @@ public class Juego2 extends JFrame {
 					x = x + 50;
 				}
 				
-				System.out.println(x);
 				x = 70;
 				y = y + 100;
 			}
@@ -136,13 +141,14 @@ public class Juego2 extends JFrame {
 			for (int i = 0; i < 5;i++) {				
 				for (int j = 0; j < 6;j++) {		
 					botonCompr[i][j] = new JButton("");
-					contentPane.add(botonCompr[i][j]);	
+					contentPane.add(botonCompr[i][j]);
+					botonCompr[i][j].setEnabled(false);
 					botonCompr[i][j].setBackground(Color.black);
 				}				
 			}
 			
 			
-			int x2 = 320, y2 = 80;
+			int x2 = 360, y2 = 80;
 			
 			for (int i = 0; i < 5;i++) {				
 				for (int j = 0; j < 6;j++) {									
@@ -150,8 +156,8 @@ public class Juego2 extends JFrame {
 					x2 = x2 + 50;
 				}
 				
-				System.out.println(x);
-				x2 = 320;
+
+				x2 = 360;
 				y2 = y2 + 100;
 			}
 			
@@ -214,17 +220,23 @@ public class Juego2 extends JFrame {
 		
 		boolean res = false;
 			
-			for(int i = 0; i<5; i++) {
+			for(int i = 0; i<6; i++) {
 					if(secreto2[i].getBackground().equals(botonJuego[contj][i].getBackground()) && (!botonesAdivinados.contains(secreto2[i].getLocation()))  && (!botonesAdivinados.contains(botonJuego[contj][i].getLocation()))) {					
 						botonCompr[contj][icompr].setBackground(Color.YELLOW);
 						botonesAdivinados.add(secreto2[i].getLocation());
 						botonesAdivinados.add(botonJuego[contj][i].getLocation());
 						icompr++;
+						ganada++;
 						res = true;
 					}
 			}
+			if(ganada==6) {
+				JOptionPane.showMessageDialog(null, "HAS GANADO");
+				dispose();
+			}else {
+				ganada=0;
+			}
 			
-			System.out.println(res);
 			
 			return res;
 		
