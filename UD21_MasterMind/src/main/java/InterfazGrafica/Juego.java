@@ -62,6 +62,14 @@ public class Juego extends JFrame {
 			tituloColor.setBounds(580, 155, 150, 20);
 			contentPane.add(tituloColor);
 			
+			JLabel comprobacion = new JLabel("Comprobación: ");
+			comprobacion.setBounds(320, 55, 150, 20);
+			contentPane.add(comprobacion);
+			
+			JLabel combi = new JLabel("Combinación: ");
+			combi.setBounds(70, 55, 150, 20);
+			contentPane.add(combi);
+			
 			JButton boton = new JButton("Comprobar");
 			 boton.setBounds(350, 775, 120, 40);
 			 boton.setMnemonic(KeyEvent.VK_ENTER);

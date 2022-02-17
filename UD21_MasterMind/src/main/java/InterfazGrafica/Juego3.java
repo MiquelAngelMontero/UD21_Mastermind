@@ -55,12 +55,20 @@ public class Juego3 extends JFrame {
 			setContentPane(contentPane);
 			
 			JLabel tituloSec = new JLabel("Combinación secreta: ");
-			tituloSec.setBounds(600, 55, 150, 20);
+			tituloSec.setBounds(640, 55, 150, 20);
 			contentPane.add(tituloSec);
 			
 			JLabel tituloColor = new JLabel("Colores disponibles: ");
-			tituloColor.setBounds(600, 155, 150, 20);
+			tituloColor.setBounds(640, 155, 150, 20);
 			contentPane.add(tituloColor);
+			
+			JLabel comprobacion = new JLabel("Comprobación: ");
+			comprobacion.setBounds(360, 55, 150, 20);
+			contentPane.add(comprobacion);
+			
+			JLabel combi = new JLabel("Combinación: ");
+			combi.setBounds(70, 55, 150, 20);
+			contentPane.add(combi);
 			
 			JButton boton = new JButton("Comprobar");
 			 boton.setBounds(350, 775, 120, 40);
