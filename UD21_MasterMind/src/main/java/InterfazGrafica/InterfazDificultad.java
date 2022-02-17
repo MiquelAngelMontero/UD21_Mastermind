@@ -6,16 +6,22 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
+//import Ej3.UD20B_Ej3.Clases.Ej3.Resultado;
+
 public class InterfazDificultad extends JFrame {
 
 	private JPanel contentPane;
 	private int dificultad = 0;
+	protected JRadioButton facil = new JRadioButton("Facil");
+	protected JRadioButton inter = new JRadioButton("Intermedio");
+	protected JRadioButton difi = new JRadioButton("Dificil");
+	JButton boton = new JButton("Seleccionar");
 	
 	public InterfazDificultad() {
 			
 			setTitle("Dificultad");
 			
-			setBounds(600, 300, 250, 300);
+			setBounds(870, 300, 300, 300);
 			
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			
@@ -31,9 +37,6 @@ public class InterfazDificultad extends JFrame {
 			titulo.setBounds(50, 30, 150, 20);
 			contentPane.add(titulo);
 			
-			JRadioButton facil = new JRadioButton("Facil");
-		    JRadioButton inter = new JRadioButton("Intermedio");
-		    JRadioButton difi = new JRadioButton("Dificil");
 		    facil.setBounds(60, 70, 100, 30);
 	     	inter.setBounds(60, 120, 100, 30);
 		    difi.setBounds(60, 170, 100, 30);
@@ -43,50 +46,41 @@ public class InterfazDificultad extends JFrame {
 		    btn_grp.add(difi);
 		    contentPane.add(facil);
 		    contentPane.add(inter);
-		    contentPane.add(difi);  
-			facil.addActionListener(new ActionListener(){			
-				public void actionPerformed(ActionEvent e) {
-					
-					dificultad = 1;
-					
-				}
-			});
-			
-			inter.addActionListener(new ActionListener(){			
-				public void actionPerformed(ActionEvent e) {
-					
-					dificultad = 2;
-					
-				}
-			});
-			
-			difi.addActionListener(new ActionListener(){			
-				public void actionPerformed(ActionEvent e) {
-					
-					dificultad = 3;
-					
-				}
-			});
-		     
-		    JButton boton = new JButton("Seleccionar");
+		    contentPane.add(difi);
+		    facil.addActionListener(new Resultado());
+			inter.addActionListener(new Resultado());
+			difi.addActionListener(new Resultado());
+		    
 		    boton.setBounds(60, 230, 120, 20);
 		    boton.setMnemonic(KeyEvent.VK_ENTER);
 			contentPane.add(boton);
-			boton.addActionListener(new ActionListener(){			
-				public void actionPerformed(ActionEvent e) {
-							
-					contentPane.setVisible (false);
-					dispose();
-					
-					MasterMind frame = new MasterMind(dificultad);
-					frame.setVisible(true);
-					
+			
+	}
+	
+	public class Resultado implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+				if(e.getSource()==facil) {
+					dificultad=1;
+					boton.addActionListener(new Sel());
+				}else if(e.getSource()==inter) {
+					dificultad=2;
+					boton.addActionListener(new Sel());
+				}else if(e.getSource()==difi) {
+					dificultad=3;
+					boton.addActionListener(new Sel());
 					
 				}
-			});
-		    
+		}
+	}
+	
+	public class Sel implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			contentPane.setVisible (false);
+			dispose();
 			
-			
+			MasterMind frame = new MasterMind(dificultad);
+			frame.setVisible(true);
+		}
 	}
 
 	public int getDificultad() {

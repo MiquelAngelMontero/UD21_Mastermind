@@ -15,20 +15,20 @@ import javax.swing.*;
  * @author Eloy, Miquel Angel, Jordi
  *
  */
-public class Juego extends JFrame {
+public class Juego2 extends JFrame {
 
 	private JPanel contentPane;
 	private int dificultad;
-	private JButton[] secreto;
+	private JButton[] secreto2;
 	private JButton[] btnColoresDisp = new JButton[5];
-	public JButton[][] botonJuego = new JButton[5][5];
-	private JButton[][] botonCompr = new JButton[5][5];
+	public JButton[][] botonJuego = new JButton[5][6];
+	private JButton[][] botonCompr = new JButton[5][6];
 	private ArrayList<Color> coloresDisp = new ArrayList<Color>();
 	private ArrayList<Point> botonesAdivinados = new ArrayList<Point>();
 	public int conti = 0, contj = 0, icompr = 0;
 	
 	
-	public Juego(JButton[] secreto, int dificultad) {
+	public Juego2(JButton[] secreto2, int dificultad) {
 			
 			coloresDisp.add(Color.WHITE);
 			coloresDisp.add(Color.RED);
@@ -37,7 +37,7 @@ public class Juego extends JFrame {
 			coloresDisp.add(Color.BLUE);
 			coloresDisp.add(Color.PINK);
 		
-			this.secreto = secreto;
+			this.secreto2 = secreto2;
 			this.dificultad = dificultad;
 		
 			setTitle("Mastermind");
@@ -55,11 +55,11 @@ public class Juego extends JFrame {
 			setContentPane(contentPane);
 			
 			JLabel tituloSec = new JLabel("Combinación secreta: ");
-			tituloSec.setBounds(580, 55, 150, 20);
+			tituloSec.setBounds(600, 55, 150, 20);
 			contentPane.add(tituloSec);
 			
 			JLabel tituloColor = new JLabel("Colores disponibles: ");
-			tituloColor.setBounds(580, 155, 150, 20);
+			tituloColor.setBounds(600, 155, 150, 20);
 			contentPane.add(tituloColor);
 			
 			JButton boton = new JButton("Comprobar");
@@ -78,15 +78,16 @@ public class Juego extends JFrame {
 				}
 			});
 			
-			for (int i = 0; i < 5; i++) {
-				contentPane.add(secreto[i]);
+			for (int i = 0; i < 6; i++) {
+				contentPane.add(secreto2[i]);
 			}
 			
-			secreto[0].setBounds(570, 80, 30, 30);
-			secreto[1].setBounds(600, 80, 30, 30);
-			secreto[2].setBounds(630, 80, 30, 30);
-			secreto[3].setBounds(660, 80, 30, 30);
-			secreto[4].setBounds(690, 80, 30, 30);
+			secreto2[0].setBounds(670, 80, 30, 30);
+			secreto2[1].setBounds(700, 80, 30, 30);
+			secreto2[2].setBounds(730, 80, 30, 30);
+			secreto2[3].setBounds(760, 80, 30, 30);
+			secreto2[4].setBounds(790, 80, 30, 30);
+			secreto2[5].setBounds(820, 80, 30, 30);
 			
 			for (int i = 0; i < 5;i++) {				
 				btnColoresDisp[i] = new JButton("");
@@ -95,14 +96,14 @@ public class Juego extends JFrame {
 				btnColoresDisp[i].setBackground(coloresDisp.get(i+1));
 			}
 			
-			btnColoresDisp[0].setBounds(570, 180, 30, 30);
-			btnColoresDisp[1].setBounds(600, 180, 30, 30);
-			btnColoresDisp[2].setBounds(630, 180, 30, 30);
-			btnColoresDisp[3].setBounds(660, 180, 30, 30);
-			btnColoresDisp[4].setBounds(690, 180, 30, 30);
+			btnColoresDisp[0].setBounds(670, 180, 30, 30);
+			btnColoresDisp[1].setBounds(700, 180, 30, 30);
+			btnColoresDisp[2].setBounds(730, 180, 30, 30);
+			btnColoresDisp[3].setBounds(760, 180, 30, 30);
+			btnColoresDisp[4].setBounds(790, 180, 30, 30);
 			
 			for (int i = 0; i < 5;i++) {				
-				for (int j = 0; j < 5;j++) {		
+				for (int j = 0; j < 6;j++) {		
 					botonJuego[i][j] = new JButton("");
 					contentPane.add(botonJuego[i][j]);
 				}				
@@ -112,20 +113,20 @@ public class Juego extends JFrame {
 			int x = 70, y = 80;
 			
 			for (int i = 0; i < 5;i++) {				
-				for (int j = 0; j < 5;j++) {									
+				for (int j = 0; j < 6;j++) {									
 					botonJuego[i][j].setBounds(x, y, 30, 30);	
-					x = x + 40;
+					x = x + 50;
 				}
 				
 				System.out.println(x);
-				x = x - 200;
+				x = 70;
 				y = y + 100;
 			}
 			
 			
 			
 			for (int i = 0; i < 5;i++) {				
-				for (int j = 0; j < 5;j++) {		
+				for (int j = 0; j < 6;j++) {		
 					botonCompr[i][j] = new JButton("");
 					contentPane.add(botonCompr[i][j]);	
 					botonCompr[i][j].setBackground(Color.black);
@@ -136,13 +137,13 @@ public class Juego extends JFrame {
 			int x2 = 320, y2 = 80;
 			
 			for (int i = 0; i < 5;i++) {				
-				for (int j = 0; j < 5;j++) {									
+				for (int j = 0; j < 6;j++) {									
 					botonCompr[i][j].setBounds(x2, y2, 30, 30);	
-					x2 = x2 + 40;
+					x2 = x2 + 50;
 				}
 				
 				System.out.println(x);
-				x2 = x2 - 200;
+				x2 = 320;
 				y2 = y2 + 100;
 			}
 			
@@ -173,7 +174,7 @@ public class Juego extends JFrame {
 				
 				conti++;
 				
-				if(conti==5) {
+				if(conti==6) {
 					conti=0;
 				}
 		}
@@ -206,9 +207,9 @@ public class Juego extends JFrame {
 		boolean res = false;
 			
 			for(int i = 0; i<5; i++) {
-					if(secreto[i].getBackground().equals(botonJuego[contj][i].getBackground()) && (!botonesAdivinados.contains(secreto[i].getLocation()))  && (!botonesAdivinados.contains(botonJuego[contj][i].getLocation()))) {					
+					if(secreto2[i].getBackground().equals(botonJuego[contj][i].getBackground()) && (!botonesAdivinados.contains(secreto2[i].getLocation()))  && (!botonesAdivinados.contains(botonJuego[contj][i].getLocation()))) {					
 						botonCompr[contj][icompr].setBackground(Color.YELLOW);
-						botonesAdivinados.add(secreto[i].getLocation());
+						botonesAdivinados.add(secreto2[i].getLocation());
 						botonesAdivinados.add(botonJuego[contj][i].getLocation());
 						icompr++;
 						res = true;
@@ -226,10 +227,10 @@ public class Juego extends JFrame {
 		boolean res = false;
 		
 		for(int i = 0; i<5; i++) {
-			for(int j = 0; j<5; j++) {
-				if(secreto[j].getBackground().equals(botonJuego[contj][i].getBackground()) && (!botonesAdivinados.contains(secreto[j].getLocation()))  && (!botonesAdivinados.contains(botonJuego[contj][i].getLocation()))) {					
+			for(int j = 0; j<6; j++) {
+				if(secreto2[j].getBackground().equals(botonJuego[contj][i].getBackground()) && (!botonesAdivinados.contains(secreto2[j].getLocation()))  && (!botonesAdivinados.contains(botonJuego[contj][i].getLocation()))) {					
 					botonCompr[contj][icompr].setBackground(Color.WHITE);
-					botonesAdivinados.add(secreto[j].getLocation());
+					botonesAdivinados.add(secreto2[j].getLocation());
 					botonesAdivinados.add(botonJuego[contj][i].getLocation());
 					icompr++;
 					res = true;
