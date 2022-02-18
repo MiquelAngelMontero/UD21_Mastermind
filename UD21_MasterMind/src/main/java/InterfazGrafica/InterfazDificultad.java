@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
-//import Ej3.UD20B_Ej3.Clases.Ej3.Resultado;
 
 public class InterfazDificultad extends JFrame {
 
