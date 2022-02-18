@@ -27,6 +27,9 @@ public class Juego3 extends JFrame {
 	private ArrayList<Point> botonesAdivinados = new ArrayList<Point>();
 	public int conti = 0, contj = 0, icompr = 0;
 	protected int ganada=0;
+	private JMenu archivo;
+	private JMenuItem nuevaPartida, borrar;
+	
 	
 	public Juego3(JButton[] secreto3, int dificultad) {
 			
@@ -40,6 +43,56 @@ public class Juego3 extends JFrame {
 			this.secreto3 = secreto3;
 			this.dificultad = dificultad;
 		
+			//Barra superior
+			//--------------------------------
+			
+			JMenuBar barraMenu = new JMenuBar();
+			
+			archivo = new JMenu("Archivo");
+			
+			nuevaPartida = new JMenuItem("Nueva Partida");
+			
+			borrar = new JMenuItem("Borrar");
+			
+			archivo.add(nuevaPartida);
+			
+			archivo.add(borrar);
+			
+			barraMenu.add(archivo);
+			
+			setJMenuBar(barraMenu);
+			
+			nuevaPartida.addActionListener(new ActionListener(){			
+				public void actionPerformed(ActionEvent e) {
+					
+					contentPane.setVisible (false);
+					dispose();
+					
+					InterfazDificultad iD = new InterfazDificultad();
+					
+				}
+			});
+			
+			borrar.addActionListener(new ActionListener(){			
+				public void actionPerformed(ActionEvent e) {
+					
+					for(int i = 0; i<5; i++) {
+						for(int j = 0; j<7; j++) {
+							
+							botonCompr[i][j].setBackground(Color.black);
+							botonJuego[i][j].setBackground(Color.white);
+							conti = 0;
+							contj = 0; 
+							icompr = 0;
+							
+						}
+					}
+				}
+			});
+			
+			//--------------------------------
+			
+			
 			setTitle("Mastermind");
 			
 			setBounds(700, 40, 950, 900);

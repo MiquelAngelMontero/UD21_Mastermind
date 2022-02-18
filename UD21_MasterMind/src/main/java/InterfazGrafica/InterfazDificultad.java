@@ -9,6 +9,8 @@ import javax.swing.*;
 
 public class InterfazDificultad extends JFrame {
 
+	//Atributos de la clase
+	
 	private JPanel contentPane;
 	private int dificultad = 0;
 	protected JRadioButton facil = new JRadioButton("Facil");
@@ -18,9 +20,9 @@ public class InterfazDificultad extends JFrame {
 	
 	public InterfazDificultad() {
 			
-			setTitle("Dificultad");
+			setTitle("Dificultad");//Titulo
 			
-			setBounds(870, 300, 300, 300);
+			setBounds(870, 300, 300, 300);//Posicion
 			
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			
@@ -32,10 +34,13 @@ public class InterfazDificultad extends JFrame {
 			
 			setContentPane(contentPane);
 			
+			
+			//Cartel Superior
 			JLabel titulo = new JLabel("Selecciona la dificultad: ");
 			titulo.setBounds(50, 30, 150, 20);
 			contentPane.add(titulo);
 			
+			//Serie de Radio buttons
 		    facil.setBounds(60, 70, 100, 30);
 	     	inter.setBounds(60, 120, 100, 30);
 		    difi.setBounds(60, 170, 100, 30);
@@ -50,12 +55,14 @@ public class InterfazDificultad extends JFrame {
 			inter.addActionListener(new Resultado());
 			difi.addActionListener(new Resultado());
 		    
+			//Boton de Condirmar
 		    boton.setBounds(60, 230, 120, 20);
 		    boton.setMnemonic(KeyEvent.VK_ENTER);
 			contentPane.add(boton);
 			
 	}
 	
+	//Asignamos la dificultad dependiendo de la dificultad seleccionada
 	public class Resultado implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==facil) {
@@ -72,6 +79,7 @@ public class InterfazDificultad extends JFrame {
 		}
 	}
 	
+	//Una vez apretado el boton ejecutamos laclasse master mind i cerramos esta ventana
 	public class Sel implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			contentPane.setVisible (false);
